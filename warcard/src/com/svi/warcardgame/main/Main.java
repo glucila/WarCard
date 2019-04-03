@@ -4,8 +4,8 @@ import com.svi.warcardgame.values.Suits;
 import com.svi.warcardgame.values.CardRank;
 import com.svi.warcardgame.objects.Cards;
 import com.svi.warcardgame.objects.Player;
-import com.svi.warcardgame.objects.ShuffleDeck;
-import com.svi.warcardgame.objects.Pile;
+import com.svi.warcardgame.objects.Deck;
+
 import java.util.*;
 
 public class Main {
@@ -18,26 +18,30 @@ public class Main {
 		boolean insertInput = true;
 
 		System.out.println("Start War Card\n\n");
+		
 		// input number of players
-
 		do {
 			try {
 				System.out.println("Enter number of players:  ");
 				numberOfPlayer = scanner.nextInt();
 				if (numberOfPlayer == 2 || numberOfPlayer == 4) {
 					System.out.println("The number of players are " + numberOfPlayer);
-
 					insertInput = false;
-				} else {
+				} 
+				else {
 
 					System.out.println("Invalid number of players. Please choose between 2 and 4");
 				}
-			} catch (InputMismatchException e) {
+			}
+			catch (InputMismatchException e) {
 				System.out.println("Please enter a valid number.");
 				scanner.nextLine();
 			}
-		} while (insertInput);
-		insertInput = true;
+		}
+		while (insertInput);
+			insertInput = true;
+			System.out.println();
+			
 		// Input number of shuffle
 		do {
 			try {
@@ -46,19 +50,22 @@ public class Main {
 				if (numberOfShuffle < 0) {
 					System.out.println("Invalid number of times to shuffle");
 					insertInput = true;
-				} else {
-
+				} 
+				else {
 					System.out.println("The number of shuffles are " + numberOfShuffle);
 					insertInput = false;
 				}
-			} catch (InputMismatchException e) {
+			}
+			catch (InputMismatchException e) {
 				System.out.println("Please enter a number.");
 				scanner.nextLine();
 			}
-		} while (insertInput);
-
+		} 
+		while (insertInput);
+		
 		scanner.close();
-
+		System.out.println();
+		
 		// puts cards in deck
 		ArrayList<Cards> deck = new ArrayList<Cards>();
 		for (Suits suit : Suits.values()) {
@@ -73,28 +80,26 @@ public class Main {
 		// Display initial deck
 		System.out.println("Initial deck:");
 		for (Cards card : deck) {
-			System.out.print(card.getCardRankName() + " of " + card.getSuitName() + ",");
+			System.out.print(card.getCardRankName() + " of " + card.getSuitName() + ", ");
 		}
-		System.out.println();
-		System.out.println();
+		System.out.println("\n");
 
 		// Shuffle the deck then display
-		ArrayList<Cards> perfectShuffle = ShuffleDeck.perfectShuffle(numberOfShuffle, deck);
-		System.out.println("Shuffled Deck:\n");
+		ArrayList<Cards> perfectShuffle = Deck.perfectShuffle(numberOfShuffle, deck);
+		System.out.println("Shuffled Deck:");
 		for (Cards card : perfectShuffle) {
 			System.out.print(card.getCardRankName() + " of " + card.getSuitName() + ",");
 		}
-
-		System.out.println("");
+		System.out.println("\n");
+		
 		// create new player
-		// int numberOfPlayer = 0;
 		List<Player> listOfPlayers = new ArrayList<>();
 		for (int i = 0; i < numberOfPlayer; i++) {
-			listOfPlayers.add(new Player("player_" + i));
+			listOfPlayers.add(new Player("Player " + i));
 		}
 
 		// distribute cards
-		ShuffleDeck.distributeCards(numberOfPlayer, listOfPlayers, perfectShuffle);
+		Deck.distributeCards(numberOfPlayer, listOfPlayers, perfectShuffle);
 
 		// game
 		int roundNumber = 1;
@@ -104,11 +109,11 @@ public class Main {
 				System.out.println(player.getPlayerName() + " : " + player.getPlayerCards());
 			}
 			List<Cards> topCardList = Pile.getTopCards(listOfPlayers);
-			int highestCardIndex = Pile.findHighestCard(topCardList);
-			Pile.giveCardsToRoundWinner(highestCardIndex, listOfPlayers, topCardList);
+			int winnerCardIndex = Pile.getwinnerCard(topCardList);
+			Pile.giveCardsToRoundWinner(winnerCardIndex, listOfPlayers, topCardList);
 			listOfPlayers.removeIf(player -> player.getPlayerCards().isEmpty());
 			roundNumber++;
 		}
-		System.out.printf("Game over. The winner is " + listOfPlayers.get(0).getPlayerName());
+		System.out.println("Game over. The winner is " + listOfPlayers.get(0).getPlayerName());
 	}
 }
