@@ -12,7 +12,8 @@ public class Deck {
 				ArrayList<Cards> temporaryDeck = new ArrayList<>();
 				if (shuffledDeck.isEmpty()) {
 					temporaryDeck = deck;
-				} else {
+				} 
+				else {
 					temporaryDeck = shuffledDeck;
 				}
 				shuffledDeck = new ArrayList <Cards> ();
@@ -38,6 +39,7 @@ public class Deck {
 				else if (numberOfDeck == numberOfPlayer) {
 					numberOfDeck = 0;
 				}
-			} while (!deck.isEmpty());
+			} 
+			while (!deck.isEmpty());
 		}
 }

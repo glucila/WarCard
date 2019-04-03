@@ -5,6 +5,7 @@ import com.svi.warcardgame.values.CardRank;
 import com.svi.warcardgame.objects.Cards;
 import com.svi.warcardgame.objects.Player;
 import com.svi.warcardgame.objects.Deck;
+import com.svi.warcardgame.objects.Pile;
 
 import java.util.*;
 

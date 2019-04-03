@@ -4,7 +4,7 @@ public class Cards {
 
 	private int CardRankValue;
 	public String CardRankName;
-	public int suitValue;
+	private int suitValue;
 	public String suitName;
 	
 	public Cards (int CardRankValue, String CardRankName, int suitValue, String suitName) {
