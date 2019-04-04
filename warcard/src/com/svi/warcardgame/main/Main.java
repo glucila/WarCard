@@ -25,13 +25,13 @@ public class Main {
 			try {
 				System.out.println("Enter number of players:  ");
 				numberOfPlayer = scanner.nextInt();
-				if (numberOfPlayer == 2 || numberOfPlayer == 4) {
+				if (numberOfPlayer >= 2 && numberOfPlayer <= 52) {
 					System.out.println("The number of players are " + numberOfPlayer);
 					insertInput = false;
 				} 
 				else {
 
-					System.out.println("Invalid number of players. Please choose between 2 and 4");
+					System.out.println("Invalid number of players. Please choose between 2 to 52 players");
 				}
 			}
 			catch (InputMismatchException e) {
