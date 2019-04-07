@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Deck {
 
+
+	// shuffling of deck
 		public static ArrayList <Cards> perfectShuffle(int numberOfShuffle, ArrayList<Cards> deck) {
 			ArrayList<Cards> shuffledDeck = new ArrayList<>();
 			for (int i = 0; i < numberOfShuffle; i++) {
@@ -23,23 +25,27 @@ public class Deck {
 					shuffledDeck.add(temporaryDeck.get(k));
 				}
 			}
+			if (numberOfShuffle == 0) {
+				shuffledDeck = deck;
+			}
 			return shuffledDeck;
 		}
 		
 		// distribute cards to players
 		public static void distributeCards(int numberOfPlayer, List<Player> listOfPlayers, ArrayList<Cards> deck) {	
 			int numberOfDeck = 0;
-			do {
-				if (numberOfDeck != numberOfPlayer){
+			while (!deck.isEmpty())
 					for (numberOfDeck = 0; numberOfDeck < numberOfPlayer; numberOfDeck++) {
 						listOfPlayers.get(numberOfDeck).getPlayerCards().add(deck.get(0));
 						deck.remove(0);
-				}
-			}
-				else if (numberOfDeck == numberOfPlayer) {
-					numberOfDeck = 0;
+						if(deck.isEmpty()){
+							break;
+						}
+				
 				}
 			} 
-			while (!deck.isEmpty());
+			
+			
 		}
-}
+
+

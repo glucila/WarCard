@@ -25,14 +25,14 @@ public class Main {
 			try {
 				System.out.println("Enter number of players:  ");
 				numberOfPlayer = scanner.nextInt();
-				if (numberOfPlayer >= 2 && numberOfPlayer <= 52) {
+				if (numberOfPlayer >= 2 ) {
 					System.out.println("The number of players are " + numberOfPlayer);
 					insertInput = false;
-				} 
-				else {
-
-					System.out.println("Invalid number of players. Please choose between 2 to 52 players");
+				} else {
+					System.out.println("error");
 				}
+
+
 			}
 			catch (InputMismatchException e) {
 				System.out.println("Please enter a valid number.");
@@ -78,6 +78,7 @@ public class Main {
 			}
 		}
 
+		
 		// Display initial deck
 		System.out.println("Initial deck:");
 		for (Cards card : deck) {
@@ -96,18 +97,21 @@ public class Main {
 		// create new player
 		List<Player> listOfPlayers = new ArrayList<>();
 		for (int i = 0; i < numberOfPlayer; i++) {
-			listOfPlayers.add(new Player("Player " + i));
+			listOfPlayers.add(new Player("Player " + (i+1)));
 		}
-
 		// distribute cards
 		Deck.distributeCards(numberOfPlayer, listOfPlayers, perfectShuffle);
+		System.out.println("Player's cards:");
+		listOfPlayers.forEach(player -> System.out.println(player.getPlayerName() + ": " + player.getPlayerCards()));
 
 		// game
 		int roundNumber = 1;
 		while (listOfPlayers.size() > 1) {
+			listOfPlayers.removeIf(player -> player.getPlayerCards().isEmpty());
+			System.out.println("\n");
 			System.out.println("Round #" + roundNumber);
 			for(Player player : listOfPlayers){
-				System.out.println(player.getPlayerName() + " : " + player.getPlayerCards());
+				System.out.println(player.getPlayerName() + ": " + player.getPlayerCards());
 			}
 			List<Cards> topCardList = Pile.getTopCards(listOfPlayers);
 			int winnerCardIndex = Pile.getwinnerCard(topCardList);
@@ -115,6 +119,9 @@ public class Main {
 			listOfPlayers.removeIf(player -> player.getPlayerCards().isEmpty());
 			roundNumber++;
 		}
-		System.out.println("Game over. The winner is " + listOfPlayers.get(0).getPlayerName());
+		System.out.println("Game over. The winner is " + listOfPlayers.get(0).getPlayerName()+ " round: " + (roundNumber-1));
+		for(Player player : listOfPlayers){
+			System.out.println(player.getPlayerName() + " : " + player.getPlayerCards());
+		}
 	}
 }
