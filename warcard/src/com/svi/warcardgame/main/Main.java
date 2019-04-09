@@ -67,24 +67,25 @@ public class Main {
 		scanner.close();
 		System.out.println();
 		
-		// puts cards in deck
-		ArrayList<Cards> deck = new ArrayList<Cards>();
-		for (Suits suit : Suits.values()) {
-			for (CardRank rank : CardRank.values()) {
-				Cards card = new Cards(rank.getCardRankValue(), rank.getCardRankName(), suit.getsuitValue(),
-						suit.getsuitName());
-				deck.add(card);
+//		// puts cards in deck
+//		ArrayList<Cards> deck = new ArrayList<Cards>();
+//		for (Suits suit : Suits.values()) {
+//			for (CardRank rank : CardRank.values()) {
+//				Cards card = new Cards(rank.getCardRankValue(), rank.getCardRankName(), suit.getsuitValue(),
+//						suit.getsuitName());
+//				deck.add(card);
 
-			}
-		}
-
+//			}
+//		}
+//
 		
 		// Display initial deck
 		System.out.println("Initial deck:");
-		for (Cards card : deck) {
-			System.out.print(card.getCardRankName() + " of " + card.getSuitName() + ", ");
-		}
-		System.out.println("\n");
+		ArrayList<Cards> deck = Deck.inputStream();
+//		for (Cards card : deck) {
+//			System.out.print(card.getCardRankName() + " of " + card.getSuitName() + ", ");
+//		}
+//		System.out.println("\n");
 
 		// Shuffle the deck then display
 		ArrayList<Cards> perfectShuffle = Deck.perfectShuffle(numberOfShuffle, deck);
