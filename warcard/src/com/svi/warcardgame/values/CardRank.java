@@ -2,10 +2,10 @@ package com.svi.warcardgame.values;
 
 public enum CardRank {
 	
-	ACE (14, "Ace"),
-	KING (13, "King"),
-	QUEEN (12, "Queen"),
-	JACK (11,"Jack"),
+	ACE (14, "A"),
+	KING (13, "K"),
+	QUEEN (12, "Q"),
+	JACK (11,"J"),
 	TEN (10, "10"),
 	NINE (9, "9"),
 	EIGHT (8, "8"),
@@ -23,13 +23,13 @@ public enum CardRank {
 		this.CardRankValue = CardRankValue;
 		this.CardRankName = CardRankName;
 	}
-	
+
 	public int getCardRankValue() {
 		return CardRankValue;
 	}
-	
+
 	public String getCardRankName() {
 		return CardRankName;
 	}
-
+	
 }

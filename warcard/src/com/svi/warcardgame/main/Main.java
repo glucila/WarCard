@@ -1,7 +1,5 @@
 package com.svi.warcardgame.main;
 
-import com.svi.warcardgame.values.Suits;
-import com.svi.warcardgame.values.CardRank;
 import com.svi.warcardgame.objects.Cards;
 import com.svi.warcardgame.objects.Player;
 import com.svi.warcardgame.objects.Deck;
@@ -67,28 +65,11 @@ public class Main {
 		scanner.close();
 		System.out.println();
 		
-//		// puts cards in deck
-//		ArrayList<Cards> deck = new ArrayList<Cards>();
-//		for (Suits suit : Suits.values()) {
-//			for (CardRank rank : CardRank.values()) {
-//				Cards card = new Cards(rank.getCardRankValue(), rank.getCardRankName(), suit.getsuitValue(),
-//						suit.getsuitName());
-//				deck.add(card);
-
-//			}
-//		}
-//
-		
-		// Display initial deck
-		System.out.println("Initial deck:");
-		ArrayList<Cards> deck = Deck.inputStream();
-//		for (Cards card : deck) {
-//			System.out.print(card.getCardRankName() + " of " + card.getSuitName() + ", ");
-//		}
-//		System.out.println("\n");
+		//call the initial deck
+		ArrayList<Cards> initialDeck = Deck.stringTokenizer();
 
 		// Shuffle the deck then display
-		ArrayList<Cards> perfectShuffle = Deck.perfectShuffle(numberOfShuffle, deck);
+		ArrayList<Cards> perfectShuffle = Deck.perfectShuffle(numberOfShuffle, initialDeck);
 		System.out.println("Shuffled Deck:");
 		for (Cards card : perfectShuffle) {
 			System.out.print(card.getCardRankName() + " of " + card.getSuitName() + ",");
@@ -100,6 +81,7 @@ public class Main {
 		for (int i = 0; i < numberOfPlayer; i++) {
 			listOfPlayers.add(new Player("Player " + (i+1)));
 		}
+		
 		// distribute cards
 		Deck.distributeCards(numberOfPlayer, listOfPlayers, perfectShuffle);
 		System.out.println("Player's cards:");

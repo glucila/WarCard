@@ -2,10 +2,10 @@ package com.svi.warcardgame.values;
 
 public enum Suits {
 
-	D (4, "Diamond"), 
-	H (3, "Heart"), 
-	S (2, "Spade"), 
-	C (1, "Club");
+	DIAMOND (4, "D"), 
+	HEART (3, "H"), 
+	SPADE (2, "S"), 
+	CLUB (1, "C");
 	
 	private final int suitValue;
 	private final String suitName;

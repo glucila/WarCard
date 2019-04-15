@@ -47,6 +47,7 @@ public class Cards {
 	}
 	@Override
 	public String toString() {
-		return (CardRankName + " of " + suitName);
+		return (CardRankName + " - " + suitName);
 	}
+	
 }
